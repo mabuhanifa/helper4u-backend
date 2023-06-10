@@ -31,8 +31,12 @@ const deleteTask = (req, res) => {
   const id = req.params.id;
   db.query("DELETE FROM task WHERE id = ?", id, (err, result) => {
     if (err) {
-      console.log(err);
-      res.send(err);
+      console.error(err);
+      res.status(500).json({
+        success: false,
+        message: `An error occurred while deleting the task with id '${id}`,
+        error: err,
+      });
     } else {
       if (result.affectedRows) {
         res.send({
