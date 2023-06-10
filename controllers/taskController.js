@@ -99,7 +99,6 @@ const updateTask = async (req, res) => {
     const { title, description, isCompleted } = req.body;
 
     const data = [title, description, JSON.parse(isCompleted), id];
-    console.log(data);
 
     db.query(q, data, (err, result) => {
       if (err) {
