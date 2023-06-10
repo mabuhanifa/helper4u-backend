@@ -98,7 +98,8 @@ const updateTask = async (req, res) => {
 
     const { title, description, isCompleted } = req.body;
 
-    const data = [title, description, isCompleted, id];
+    const data = [title, description, JSON.parse(isCompleted), id];
+    console.log(data);
 
     db.query(q, data, (err, result) => {
       if (err) {
@@ -113,7 +114,7 @@ const updateTask = async (req, res) => {
       if (result.affectedRows) {
         res.json({
           success: true,
-          message: `Task with id ${id} has been successfully updated`,
+          message: `Task ${title} has been successfully updated`,
         });
       } else {
         res.json({
@@ -122,6 +123,8 @@ const updateTask = async (req, res) => {
         });
       }
     });
+
+    // res.send('hi')
   } catch (error) {
     console.error(error);
     res.status(500).json({
