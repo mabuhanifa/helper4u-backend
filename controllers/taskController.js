@@ -57,7 +57,7 @@ const createTask = async (req, res) => {
   try {
     const { title, description, isCompleted } = req.body;
 
-    const data = [title, description, isCompleted];
+    const data = [title, description, JSON.parse(isCompleted)];
 
     const insertDataQuery = `INSERT INTO task (title, description, isCompleted) VALUES (?,?,?)`;
 
