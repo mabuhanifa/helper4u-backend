@@ -2,18 +2,16 @@ const express = require("express");
 const port = process.env.PORT || 3000;
 const cors = require("cors");
 const app = express();
-
+const taskRoutes = require("./routes/taskRoute.js");
 const db = require("./db");
 
 app.use(cors());
 app.use(express.json());
-
-
-
+app.use('/task',taskRoutes)
 app.get("/:id", async (req, res) => {
   const id = req.params.id;
   const selectDataQuery = `SELECT * FROM task WHERE id = ?`;
-  db.query(selectDataQuery,id, (err, results) => {
+  db.query(selectDataQuery, id, (err, results) => {
     if (err) {
       console.error("Error retrieving data:", err);
       res.send(err);

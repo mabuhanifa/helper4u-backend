@@ -1,3 +1,5 @@
+const db = require("../db.js");
+
 const getTasks = async (req, res) => {
   const selectDataQuery = `SELECT * FROM task`;
   db.query(selectDataQuery, (err, results) => {
