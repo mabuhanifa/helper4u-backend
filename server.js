@@ -1,11 +1,11 @@
 const express = require("express");
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const cors = require("cors");
 const app = express();
 const taskRoutes = require("./routes/taskRoute.js");
 const db = require("./db");
-const errorMiddleware = require("./middlewares/errorMiddileware.js");
-const notFoundMiddleware = require("./middlewares/notFoundMiddleware.js");
+const notFoundMiddleware = require("./middleware/notFoundMiddleware.js");
+const errorMiddleware = require("./middleware/errorMiddleware.js");
 
 app.use(cors());
 app.use(express.json());
