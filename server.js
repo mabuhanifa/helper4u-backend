@@ -11,8 +11,8 @@ app.use(cors());
 app.use(express.json());
 app.use("/task", taskRoutes);
 
-app.use(errorMiddleware);
 app.all("*", notFoundMiddleware);
+app.use(errorMiddleware);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

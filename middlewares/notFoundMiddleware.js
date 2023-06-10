@@ -1,5 +1,11 @@
-const notFoundMiddleware = (req, res) => {
-  res.status(404).json({ success: false, message: "Route does not exist. 404 - Not Found" });
+const notFoundMiddleware = (req, res, next) => {
+  const error = new Error(
+    `The requested route '${req.originalUrl}' does not exist`
+  );
+
+  error.statusCode = 404;
+
+  next(error);
 };
 
-module.exports = notFoundMiddleware
+module.exports = notFoundMiddleware;

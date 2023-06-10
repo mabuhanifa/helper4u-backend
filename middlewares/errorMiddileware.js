@@ -1,12 +1,11 @@
 // Error middleware
-const errorMiddleware = (err, req, res, next) => {
-  console.error(err);
-
-  if (err instanceof SyntaxError && err.status === 400 && "body" in err) {
-    res.status(400).json({ success: false, message: "Bad request" });
-  } else {
-    res.status(500).json({ success: false, message: "Internal server error" });
-  }
+const errorMiddleware = (error, req, res, next) => {
+  error.statusCode = error.statusCode || 500;
+  error.status = error.status || "error";
+  res.status(error.statusCode).json({
+    status: error.statusCode,
+    message: error.message,
+  });
 };
 
 module.exports = errorMiddleware;
