@@ -6,8 +6,6 @@ const app = express();
 const connection = require("./db");
 
 
-
-
 app.use(cors());
 app.use(express.json());
 app.listen(port, () => {
