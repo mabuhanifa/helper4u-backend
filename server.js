@@ -8,16 +8,7 @@ const db = require("./db");
 app.use(cors());
 app.use(express.json());
 
-app.get("/", async (req, res) => {
-  const selectDataQuery = `SELECT * FROM task`;
-  db.query(selectDataQuery, (err, results) => {
-    if (err) {
-      console.error("Error retrieving data:", err);
-      return;
-    }
-    res.send(results);
-  });
-});
+
 
 app.get("/:id", async (req, res) => {
   const id = req.params.id;
