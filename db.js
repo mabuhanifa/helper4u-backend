@@ -9,7 +9,6 @@ connection.connect((err) => {
   } else {
     console.log("Connected to MySQL database");
   }
-  
 });
 
 module.exports = connection;
