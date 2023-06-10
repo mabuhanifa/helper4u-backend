@@ -19,6 +19,19 @@ app.get("/", async (req, res) => {
   });
 });
 
+app.get("/:id", async (req, res) => {
+  const id = req.params.id;
+  const selectDataQuery = `SELECT * FROM task WHERE id = ?`;
+  db.query(selectDataQuery,id, (err, results) => {
+    if (err) {
+      console.error("Error retrieving data:", err);
+      res.send(err);
+      return;
+    }
+    res.send(results);
+  });
+});
+
 app.post("/", async (req, res) => {
   try {
     const { title, description, isCompleted } = req.body;
